@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Forever Fund — Hueworx</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #071503;
+      --sage:   #566153;
+      --cream:  #f5f5f0;
+      --white:  #ffffff;
+      --sage-light: rgba(86, 97, 83, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0;
+      line-height: 1.15;
+    }
+
+    /* ─── Hero ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(7, 21, 3, 0.25) 0%,
+        rgba(7, 21, 3, 0.55) 50%,
+        rgba(7, 21, 3, 0.92) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 0 clamp(1.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
+      max-width: 900px;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: rgba(245, 245, 240, 0.75);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .scroll-cue {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .scroll-cue:hover { color: var(--cream); }
+
+    .scroll-cue svg {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
+    /* ─── Section: What you get ─────────────────────────── */
+    .section-what {
+      background-color: var(--dark);
+      padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .section-what { grid-template-columns: 1fr; }
+    }
+
+    .copy-block .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .copy-block h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 1.75rem;
+    }
+
+    .copy-block p {
+      color: rgba(245, 245, 240, 0.7);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      margin: 2rem 0;
+    }
+
+    .package-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .package-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: var(--cream);
+      padding: 0.875rem 1.25rem;
+      border: 1px solid rgba(86, 97, 83, 0.3);
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .package-list li:hover {
+      border-color: var(--sage);
+      background: var(--sage-light);
+    }
+
+    .package-list li .check {
+      color: var(--sage);
+      flex-shrink: 0;
+    }
+
+    .total-tag {
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--sage-light);
+      border: 1px solid var(--sage);
+      border-radius: 2px;
+    }
+
+    .total-tag .amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .total-tag .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* ─── Photo strip ───────────────────────────────────── */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin: 0;
+    }
+
+    .photo-strip img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.3s;
+    }
+
+    .photo-strip img:hover { filter: brightness(1); }
+
+    /* ─── Form section ──────────────────────────────────── */
+    .section-form {
+      background-color: #0a1c06;
+      border-top: 1px solid rgba(86, 97, 83, 0.2);
+      padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+    }
+
+    .form-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .form-header .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .form-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .form-header p {
+      color: rgba(245, 245, 240, 0.6);
+      font-size: 0.95rem;
+    }
+
+    /* Form grid */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    input, textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(86, 97, 83, 0.4);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      padding: 0.875rem 1rem;
+      width: 100%;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(245, 245, 240, 0.25);
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--sage);
+      background: rgba(86, 97, 83, 0.08);
+    }
+
+    /* Date input styling */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.5) sepia(1) saturate(0.5) hue-rotate(80deg);
+      cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.6;
+    }
+
+    .submit-btn {
+      margin-top: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: var(--sage);
+      color: var(--white);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #6a7a67;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(245, 245, 240, 0.35);
+      margin-top: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ─── Footer ────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(86, 97, 83, 0.2);
+      padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--sage);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(245, 245, 240, 0.3);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Hero ──────────────────────────────────────────── -->
+  <section class="hero">
+    <img
+      class="hero-img"
+      src="assets/LeRouxAtLast-129.jpg"
+      alt="Wedding photography by Hueworx"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="brand">Hueworx — Pretoria</p>
+      <h1>The Forever<br /><em>Fund.</em></h1>
+      <p class="hero-sub">Every year, we give one Pretoria couple R30,000 worth of full wedding coverage. On us.</p>
+      <a href="#enter" class="scroll-cue">
+        Enter the giveaway
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── What's included ───────────────────────────────── -->
+  <div class="section-what">
+    <div class="copy-block">
+      <p class="eyebrow">Why we do this</p>
+      <h2>We got<br /><em>married.</em></h2>
+      <p>We know what that day actually means.</p>
+      <p>That's why we created The Forever Fund — and every year, we give one Pretoria couple the full package, completely free.</p>
+      <div class="divider"></div>
+      <p>We're Ruan and Charlize — the husband and wife team behind Hueworx. We've photographed and filmed weddings across Pretoria because we believe every love story deserves to be remembered properly.</p>
+      <p><strong style="color: var(--cream); font-weight: 500;">One couple wins everything.</strong></p>
+    </div>
+
+    <div>
+      <p class="eyebrow" style="font-family:'Playfair Display',serif; font-style:italic; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage); margin-bottom:1.25rem;">The full package</p>
+      <ul class="package-list">
+        <li>
+          <svg class="check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Full day photo coverage
+        </li>
+        <li>
+          <svg class="check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Cinematic wedding film
+        </li>
+        <li>
+          <svg class="check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Drone footage
+        </li>
+        <li>
+          <svg class="check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Engagement shoot
+        </li>
+        <li>
+          <svg class="check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Physical wedding album
+        </li>
+      </ul>
+
+      <div class="total-tag">
+        <span class="amount">R30,000</span>
+        <span class="label">Everything. Covered. Free.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Photo strip ───────────────────────────────────── -->
+  <div class="photo-strip">
+    <img src="assets/LeRouxAtLast-92.jpg"  alt="Wedding moment" />
+    <img src="assets/LeRouxAtLast-117.jpg" alt="Wedding moment" />
+    <img src="assets/LeRouxAtLast-126.jpg" alt="Wedding moment" />
+  </div>
+
+  <!-- ─── Entry Form ────────────────────────────────────── -->
+  <section class="section-form" id="enter">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <p class="eyebrow">Apply now</p>
+        <h2>Tell us your story.</h2>
+        <p>Fill in your details below. We'll read every entry personally.</p>
+      </div>
+
+      <!--
+        ACTION: Replace the action attribute below with your form endpoint.
+        Options: Formspree (https://formspree.io), Netlify Forms (add netlify attribute),
+        or any other form backend service.
+      -->
+      <form action="https://formspree.io/f/xqegwjld" method="POST">
+        <div class="form-row">
+          <div class="field">
+            <label for="partner1">Partner 1 — Full Name</label>
+            <input
+              type="text"
+              id="partner1"
+              name="partner1_name"
+              placeholder="e.g. Ruan Raaths"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="partner2">Partner 2 — Full Name</label>
+            <input
+              type="text"
+              id="partner2"
+              name="partner2_name"
+              placeholder="e.g. Charlize Raaths"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="wedding_date">Wedding Date</label>
+            <input
+              type="date"
+              id="wedding_date"
+              name="wedding_date"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="venue">Venue</label>
+            <input
+              type="text"
+              id="venue"
+              name="venue"
+              placeholder="e.g. The Hazel, Pretoria"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="why">Why do you deserve this?</label>
+          <textarea
+            id="why"
+            name="why_deserve"
+            placeholder="Tell us your story — why this wedding matters, what you're up against, and why The Forever Fund is meant for you."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit our entry</button>
+
+        <p class="form-note">
+          By submitting, you agree that Hueworx may contact you regarding The Forever Fund.<br />
+          Giveaway is open to Pretoria couples only. One entry per couple.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-brand">Hueworx</span>
+    <span class="footer-copy">&copy; 2025 Hueworx. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
