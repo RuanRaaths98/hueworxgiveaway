@@ -231,24 +231,73 @@
       color: var(--sage);
     }
 
-    /* ─── Photo strip ───────────────────────────────────── */
-    .photo-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
-      margin: 0;
+    /* ─── Gallery ───────────────────────────────────────── */
+    .gallery-section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+      background-color: var(--dark);
+      border-top: 1px solid rgba(86, 97, 83, 0.15);
     }
 
-    .photo-strip img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-header .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .gallery-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .gallery-grid {
+      columns: 3;
+      column-gap: 6px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid { columns: 2; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid { columns: 2; column-gap: 4px; }
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 6px;
+      overflow: hidden;
       display: block;
-      filter: brightness(0.85);
-      transition: filter 0.3s;
+      position: relative;
     }
 
-    .photo-strip img:hover { filter: brightness(1); }
+    @media (max-width: 480px) {
+      .gallery-item { margin-bottom: 4px; }
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: brightness(0.82) saturate(0.9);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      filter: brightness(1) saturate(1);
+      transform: scale(1.03);
+    }
 
     /* ─── Form section ──────────────────────────────────── */
     .section-form {
@@ -482,12 +531,52 @@
     </div>
   </div>
 
-  <!-- ─── Photo strip ───────────────────────────────────── -->
-  <div class="photo-strip">
-    <img src="assets/LeRouxAtLast-92.jpg"  alt="Wedding moment" />
-    <img src="assets/LeRouxAtLast-117.jpg" alt="Wedding moment" />
-    <img src="assets/LeRouxAtLast-126.jpg" alt="Wedding moment" />
-  </div>
+  <!-- ─── Gallery ─────────────────────────────────────────── -->
+  <section class="gallery-section">
+    <div class="gallery-header">
+      <p class="eyebrow">Our work</p>
+      <h2>Memories we've made.</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="assets/LeRouxAtLast-92.jpg"    alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Struwig Fees-26.jpg"    alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/LeRouxAtLast-117.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Struwig Fees-331.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/LeRouxAtLast-126.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Struwig Fees-337.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/LeRouxAtLast-107.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Struwig Fees-400.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/LeRouxAtLast-140.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Struwig Fees-429.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/LeRouxAtLast-129.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/Struwig Fees-434.jpg"   alt="Wedding moment" loading="lazy" />
+      </div>
+    </div>
+  </section>
 
   <!-- ─── Entry Form ────────────────────────────────────── -->
   <section class="section-form" id="enter">
