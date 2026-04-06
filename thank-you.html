@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entry Received — The Forever Fund | Hueworx</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <!--
+    ─── TRACKING ────────────────────────────────────────────
+    Paste your Google Analytics, Meta Pixel, or any other
+    conversion tracking snippet below this comment.
+
+    Example — Google Analytics 4:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+      gtag('event', 'conversion', { event_category: 'forever_fund', event_label: 'entry_submitted' });
+    </script>
+
+    Example — Meta Pixel:
+    <script>
+      !function(f,b,e,v,n,t,s){...}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'Lead');
+    </script>
+    ─────────────────────────────────────────────────────────
+  -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:  #071503;
+      --sage:  #566153;
+      --cream: #f5f5f0;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0;
+      line-height: 1.15;
+    }
+
+    /* ─── Background image ──────────────────────────────── */
+    .bg-photo {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .bg-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .bg-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 21, 3, 0.82);
+    }
+
+    /* ─── Main content ──────────────────────────────────── */
+    main {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+      text-align: center;
+    }
+
+    .card {
+      max-width: 580px;
+      width: 100%;
+    }
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--sage);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: var(--sage);
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .message {
+      color: rgba(245, 245, 240, 0.7);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.85rem;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      margin: 2rem auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-decoration: none;
+      transition: color 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .back-link:hover { color: var(--cream); }
+
+    /* ─── Footer ────────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(86, 97, 83, 0.2);
+      padding: 1.75rem clamp(1.5rem, 6vw, 5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--sage);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(245, 245, 240, 0.3);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="bg-photo">
+    <img src="assets/LeRouxAtLast-140.jpg" alt="" aria-hidden="true" />
+  </div>
+
+  <!-- Content -->
+  <main>
+    <div class="card">
+
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 11l5 5 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <p class="eyebrow">Entry received</p>
+
+      <h1>We have your<br /><em>story.</em></h1>
+
+      <p class="message">
+        Thank you for entering The Forever Fund. We've received your entry and we'll read it personally.
+      </p>
+      <p class="message">
+        One couple. One full package. R30,000 on us. We'll be in touch.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="message" style="font-size: 0.88rem; color: rgba(245,245,240,0.45);">
+        — Ruan &amp; Charlize, Hueworx
+      </p>
+
+      <a href="index.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to the giveaway
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-brand">Hueworx</span>
+    <span class="footer-copy">&copy; 2026 Hueworx. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
