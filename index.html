@@ -605,13 +605,7 @@
         <p>Fill in your details below. We'll read every entry personally.</p>
       </div>
 
-      <!--
-        ACTION: Replace the action attribute below with your form endpoint.
-        Options: Formspree (https://formspree.io), Netlify Forms (add netlify attribute),
-        or any other form backend service.
-      -->
-      <form action="https://formspree.io/f/xqegwjld" method="POST">
-        <input type="hidden" name="_next" value="https://wedding-giveaway.co.za/thank-you" />
+      <form id="entry-form">
         <div class="form-row">
           <div class="field">
             <label for="partner1">Partner 1 — Full Name</label>
@@ -678,13 +672,38 @@
           ></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Submit our entry</button>
+        <button type="submit" class="submit-btn" id="submit-btn">Submit our entry</button>
 
         <p class="form-note">
           By submitting, you agree that Hueworx may contact you regarding The Forever Fund.<br />
           Giveaway is open to Pretoria couples only. One entry per couple.
         </p>
       </form>
+
+      <script>
+        document.getElementById('entry-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('submit-btn');
+          btn.textContent = 'Sending…';
+          btn.disabled = true;
+          try {
+            const res = await fetch('https://formspree.io/f/xqegwjld', {
+              method: 'POST',
+              body: new FormData(this),
+              headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+              window.location.href = '/thank-you';
+            } else {
+              btn.textContent = 'Something went wrong — try again';
+              btn.disabled = false;
+            }
+          } catch {
+            btn.textContent = 'Something went wrong — try again';
+            btn.disabled = false;
+          }
+        });
+      </script>
     </div>
   </section>
 
